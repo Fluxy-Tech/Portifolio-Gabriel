@@ -1,0 +1,278 @@
+/* ==========================================================================
+   Gabriel Lopes — Portfolio
+   Monochrome editorial / technical-dossier aesthetic.
+   ========================================================================== */
+
+:root {
+  --ink: #0a0a0a;
+  --ink-soft: #171717;
+  --paper: #f4f3ef;
+  --paper-white: #ffffff;
+
+  --gray-900: #1c1c1c;
+  --gray-800: #2b2b2b;
+  --gray-700: #454545;
+  --gray-600: #626262;
+  --gray-500: #838383;
+  --gray-400: #a6a49d;
+  --gray-300: #c9c7bf;
+  --gray-200: #dfddd5;
+  --gray-100: #eae8e1;
+
+  --line: rgba(10, 10, 10, 0.14);
+  --line-strong: rgba(10, 10, 10, 0.3);
+  --line-on-dark: rgba(244, 243, 239, 0.18);
+  --line-on-dark-strong: rgba(244, 243, 239, 0.38);
+
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", monospace;
+  --font-body: "Instrument Sans", "Helvetica Neue", sans-serif;
+
+  --container: 1240px;
+  --edge: clamp(1.5rem, 5vw, 4.5rem);
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 500;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------- layout helpers ---------- */
+
+.wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-left: var(--edge);
+  padding-right: var(--edge);
+}
+
+.section {
+  position: relative;
+  padding: clamp(4.5rem, 9vw, 8rem) 0;
+}
+
+.section--dark {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.section--line-top {
+  border-top: 1px solid var(--line);
+}
+.section--dark.section--line-top {
+  border-top: 1px solid var(--line-on-dark);
+}
+
+/* ---------- typography system ---------- */
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gray-600);
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.section--dark .eyebrow {
+  color: var(--gray-400);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 0.5rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.index-num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-top: 0.6em;
+}
+
+.section-heading em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* ---------- shared texture ---------- */
+
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/></svg>");
+}
+
+.blueprint-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--line-on-dark) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-on-dark) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 60% 30%, #000 10%, transparent 75%);
+}
+
+/* ---------- reveal-on-scroll ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- buttons / links ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.95rem 1.6rem;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+.btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn--on-dark {
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
+.btn--on-dark:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.btn--solid {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn--solid:hover {
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn--solid-on-dark {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink);
+}
+
+.btn--solid-on-dark:hover {
+  background: transparent;
+  color: var(--paper);
+}
+
+.link-underline {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.link-underline:hover {
+  background-size: 100% 1px;
+}
+
+/* ---------- scrollbar (webkit) ---------- */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border: 2px solid var(--paper);
+  border-radius: 8px;
+}

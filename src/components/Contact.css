@@ -1,0 +1,90 @@
+.contact {
+  position: relative;
+  padding-bottom: 2.5rem;
+}
+
+.contact__heading {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.6rem, 7vw, 5.4rem);
+  line-height: 1;
+  margin-top: 0.6em;
+  color: var(--paper-white);
+}
+
+.contact__heading em {
+  font-style: italic;
+  color: var(--gray-500);
+}
+
+.contact__lede {
+  margin-top: 1.6rem;
+  max-width: 30rem;
+  color: var(--gray-400);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.contact__mail {
+  display: inline-block;
+  margin-top: 2.4rem;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: var(--paper-white);
+  text-decoration: none;
+}
+
+.contact__channels {
+  position: relative;
+  z-index: 1;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line-on-dark);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.contact__channels li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.contact__channel-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+
+.contact__channels a {
+  color: var(--gray-200);
+  text-decoration: none;
+  font-size: 0.92rem;
+  width: fit-content;
+}
+
+.contact__bottom {
+  position: relative;
+  z-index: 1;
+  margin-top: 4.5rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line-on-dark);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.74rem;
+  color: var(--gray-500);
+}
+
+.contact__bottom a {
+  color: var(--gray-400);
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .contact__channels {
+    grid-template-columns: 1fr;
+  }
+}

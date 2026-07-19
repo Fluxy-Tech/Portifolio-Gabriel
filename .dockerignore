@@ -1,0 +1,7 @@
+node_modules
+dist
+.git
+.claude
+*.tsbuildinfo
+Gabriel_Lopes_Full-Stack.docx
+Foto para perfil.png
