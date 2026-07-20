@@ -43,6 +43,13 @@ export default function Hero() {
           <motion.div className="hero__actions" custom={3} variants={fadeUp} initial="hidden" animate="show">
             <a href="#experiencia" className="btn btn--on-dark">Ver experiência ↓</a>
             <a href="#contato" className="btn btn--solid-on-dark">Falar comigo</a>
+            <a
+              href="/Gabriel_Lopes_Full-Stack.pdf"
+              download
+              className="btn btn--on-dark"
+            >
+              Baixar currículo ↓
+            </a>
           </motion.div>
 
           <motion.div className="hero__meta mono" custom={4} variants={fadeUp} initial="hidden" animate="show">

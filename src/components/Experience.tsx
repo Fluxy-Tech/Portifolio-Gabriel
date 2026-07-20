@@ -1,7 +1,17 @@
 import { motion } from "framer-motion";
 import "./Experience.css";
 
-const ROLES = [
+type Role = {
+  period: string;
+  role: string;
+  org: string;
+  place: string;
+  bullets: string[];
+  featured?: boolean;
+  link?: string;
+};
+
+const ROLES: Role[] = [
   {
     period: "Out 2025 — Atual",
     role: "Analista de Implementação",
@@ -20,12 +30,28 @@ const ROLES = [
     role: "Desenvolvedor Full-Stack",
     org: "Viva Vino",
     place: "Uberlândia — Temporário",
+    link: "https://vivavinoudi.com.br/",
     bullets: [
       "Back-end em Node.js/TypeScript: checkout, pagamentos, auth e estoque em tempo real.",
       "IA: agentes para enriquecimento automatizado de catálogo e fichas técnicas.",
       "Front-end em React e Vite, com foco em UX/UI e taxa de conversão.",
       "Evolução da arquitetura para escala em grandes volumes de produtos e clientes.",
       "PostgreSQL, Redis para cache e storage compatível com S3.",
+    ],
+  },
+  {
+    period: "Jan 2025 — Abr 2026",
+    role: "Desenvolvedor Full-Stack",
+    org: "Fluxy Technologies — Fluxy Gestão",
+    place: "Remoto — Temporário",
+    featured: true,
+    link: "https://gestao.fluxytechnologies.com.br/",
+    bullets: [
+      "Produto: SaaS completo para gestão de laboratórios de prótese e clínicas odontológicas, unificando processos operacionais e financeiros.",
+      "Arquitetura e funcionalidades: gestão de clientes e serviços, ordens de serviço, controle de despesas, dashboards de faturamento/margem e relatórios financeiros.",
+      "Back-end: Node.js, Express e Better Auth — autenticação, controle de acesso e personalização multi-empresa.",
+      "Front-end: React, Vite, Tailwind e Shadcn — interface responsiva com foco em UX entre dispositivos.",
+      "Banco de Dados e Infraestrutura: PostgreSQL, com catálogo público de serviços e preços por cliente em produção.",
     ],
   },
   {
@@ -84,7 +110,7 @@ export default function Experience() {
         <ol className="experience__list">
           {ROLES.map((r) => (
             <motion.li
-              className="experience__item"
+              className={`experience__item ${r.featured ? "experience__item--featured" : ""}`}
               key={r.role + r.period}
               initial="hidden"
               whileInView="show"
@@ -93,6 +119,11 @@ export default function Experience() {
             >
               <div className="experience__period mono">{r.period}</div>
               <div className="experience__body">
+                {r.featured && (
+                  <span className="experience__badge mono">
+                    <span className="experience__badge-dot" /> Produto em produção · clientes ativos
+                  </span>
+                )}
                 <h3 className="experience__role">{r.role}</h3>
                 <p className="experience__org mono">{r.org} · {r.place}</p>
                 <ul className="experience__bullets">
@@ -100,6 +131,16 @@ export default function Experience() {
                     <li key={b}>{b}</li>
                   ))}
                 </ul>
+                {r.link && (
+                  <a
+                    href={r.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="experience__link mono link-underline"
+                  >
+                    Ver projeto ↗
+                  </a>
+                )}
               </div>
             </motion.li>
           ))}

@@ -5,6 +5,7 @@ const CHANNELS = [
   { label: "E-mail", value: "lopes.biel2588@gmail.com", href: "mailto:lopes.biel2588@gmail.com" },
   { label: "Telefone", value: "+55 34 99780-1829", href: "tel:+5534997801829" },
   { label: "LinkedIn", value: "linkedin.com/in/gabriel-lopes", href: "https://linkedin.com/in/gabriel-lopes" },
+  { label: "Currículo", value: "Baixar PDF ↓", href: "/Gabriel_Lopes_Full-Stack.pdf", download: true },
 ];
 
 const reveal = {
@@ -50,7 +51,13 @@ export default function Contact() {
           {CHANNELS.map((c) => (
             <li key={c.label}>
               <span className="contact__channel-label">{c.label}</span>
-              <a href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="link-underline">
+              <a
+                href={c.href}
+                target={c.href.startsWith("http") ? "_blank" : undefined}
+                rel="noreferrer"
+                download={"download" in c ? c.download : undefined}
+                className="link-underline"
+              >
                 {c.value}
               </a>
             </li>
